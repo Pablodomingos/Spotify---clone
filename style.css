@@ -6,6 +6,8 @@
     --roxo: #5222F2;
     --verde-claro: #B9DCDB;
     --verde-neon: #2ecc71;
+    --cor-conteudo: #181818;
+    --cor-conteudo-hover: #282828;
 }
 
 *{
@@ -32,12 +34,23 @@ body{
 */
 
 /* ---- seção do HEADER ---- */
+.back-header-vertical{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 291px;
+    height: 100%;
+}
+
+
 .header-vertical{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 291px;
     height: 100%;
+    position: fixed;
+    z-index: 2;
 }
 
 .primeiro-container-header{
@@ -60,24 +73,64 @@ body{
     display: flex;
     align-items: center;
     line-height: 16px;
+    position: relative;
+    cursor: pointer;
+}
+
+.input{
+    margin-left: 5px;
+    opacity: 0;
+}
+
+.input[type='radio']:checked ~ label, .inicio:hover > .titles-continers-superiors, .busca:hover > .titles-continers-superiors, .biblioteca:hover > .titles-continers-superiors{
+    color: var(--branco);
+    opacity: 1;
+}
+
+.input[type='radio']:checked ~ .svg-superior1, .inicio:hover > .svg-superior1 , .busca:hover > .svg-superior1, .biblioteca:hover > .svg-superior1{
+    opacity: 1;
+    transition: 0.3s ease;
+}
+
+.svg-superior1{
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+    position: absolute;
 }
 
 .svg-superior{
     width: 24px;
     height: 24px;
+    position: absolute;
+    opacity: 0.5;
 }
 
 .titles-continers-superiors, .titles-containers-inferiors{
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
     padding-left: 19px;
-    color: var(--branco);
+    color: var(--branco-mais-escuro);
     cursor: pointer;
+    opacity: 0.5;
+    transition: 0.3s ease;
 }
 
 .svg-inferior-1, .svg-inferior-2{
     width: 12px;
     height: 12px;
+    opacity: 0.5;
+}
+
+.bloco-inferior-svg:hover > .svg-inferior-1, .bloco-inferior-svg:hover > .svg-inferior-2{
+    opacity: 1;
+    transition: 0.3s ease;
+}
+
+.bloco-inferior-svg:hover > .titles-containers-inferiors{
+    color: var(--branco);
+    opacity: 1;
+    transition: 0.3s ease;
 }
 
 .svg-inferior-1{
@@ -117,7 +170,7 @@ body{
     text-decoration: underline;
 }
 
-.svg-superior, .svg-inferior-1, .svg-inferior-2, .titles-continer-superior, .p-segundo-container-header, .logo, .setas, .titles-corpo-site, .p-empresa, .p-links, .p-comunidade, i, .nome, .ver-tudo{
+.svg-superior, .svg-inferior-1, .bloco-inferior-svg, .svg-inferior-2, .p-segundo-container-header, .logo, .setas, .titles-corpo-site, .p-empresa, .p-links, .p-comunidade, i, .nome, .ver-tudo{
     cursor: pointer;
 }
 
@@ -191,11 +244,11 @@ body{
     margin: 30px 33px;
 }
 
-.conteudo-corpo-site > div{
+.conteudo-corpo-site > .corpo{
     width: 100%;
 }
 
-.conteudo-corpo-site > div > div{
+.conteudo-corpo-site > .corpo > .titles-bloco-conteudo{
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -217,6 +270,71 @@ body{
     text-decoration: underline;
 }
 
+.conteudo{
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.conteudo-bloco{
+    margin: 25px 0;
+    padding: 20px;
+    width: 183px;
+    height: 260px;
+    border-radius: 5px;
+    position: relative;
+    background-color: var(--cor-conteudo);
+}
+
+.conteudo-bloco:hover{
+    background-color: var(--cor-conteudo-hover);
+}
+
+.img-conteudo-bloco{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.img-conteudo-bloco ~ img{
+    position: absolute;
+    border: solid 14px var(--verde-neon);
+    border-radius: 50%;
+    width: 18px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.589);
+    background-color: var(--verde-neon);
+    right: 30px;
+    top: 155px;
+    opacity: 0;
+    transition: 0.1s ease-in;
+    transform: scale(0.99);
+}
+
+.conteudo-bloco:hover > .img-conteudo-bloco ~ img{
+    transition: 0.2s ease-in-out;
+    opacity: 1;
+    top: 147px;
+}
+
+.conteudo-bloco:hover > .img-conteudo-bloco ~ img:hover{
+    transform: scale(1.03);
+}
+
+.title-conteudo{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 5px 0;
+    color: var(--branco);
+}
+
+.p-conteudo{
+    font-size: 16px;
+    font-weight: 400;
+    max-height: 38px;
+    overflow: hidden;
+    color: var(--branco-mais-escuro);
+}
 
 
 footer{
@@ -243,7 +361,7 @@ footer{
 }
 
 .titles-footer{
-    font-size: 12px;
+    font-size: 14px;
     margin: 0px 100px 20px 40px;
     font-weight: 900;
     color: var(--branco-mais-escuro);
